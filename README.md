@@ -1,0 +1,233 @@
+[home.html.html](https://github.com/user-attachments/files/25725875/home.html.html)
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SULTAN STOR</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--bg2:#12121a;--fg:#fff;--muted:#9ca3af;--accent:#00d4aa;--glow:rgba(0,212,170,0.4);--card:#1a1a24;--border:#2a2a3a;--orange:#ff6b35;--wa-green:#25D366}
+*{font-family:'Tajawal',sans-serif}body{background:var(--bg);color:var(--fg);overflow-x:hidden}
+.top-bar{background:linear-gradient(90deg,#020a08,#051a14);border-bottom:1px solid rgba(0,255,170,.3);padding:10px;text-align:center;color:#0f7;font-weight:700;font-size:14px}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.orb{position:fixed;width:500px;height:500px;border-radius:50%;filter:blur(100px);opacity:.1;pointer-events:none}
+.o1{background:var(--accent);top:-150px;right:-150px}.o2{background:var(--orange);bottom:-150px;left:-150px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,15,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:15px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.btn-main{background:linear-gradient(135deg,var(--accent),#0f8);color:var(--bg);font-weight:700;padding:10px 25px;border-radius:8px;border:none;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block}
+.btn-main:hover{transform:scale(1.05);box-shadow:0 5px 20px var(--glow)}
+.hero{min-height:70vh;display:flex;align-items:center;padding-top:80px}
+.hero-content{max-width:600px}
+h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;line-height:1.2;margin-bottom:20px}
+.gr-txt{background:linear-gradient(135deg,var(--accent),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:40px}
+.st-box{background:var(--card);border:1px solid var(--border);padding:20px;border-radius:12px;text-align:center}
+.st-num{font-size:2rem;font-weight:900;color:var(--accent)}
+.apps-sec{padding:40px 0}
+.sec-title{text-align:center;margin-bottom:30px}
+.sec-title h2{font-size:2rem;margin-bottom:10px}
+.apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px}
+.app-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s}
+.app-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.app-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#111}
+.app-name{text-align:center;padding:10px;font-size:12px;font-weight:700}
+.modal-bg{position:fixed;inset:0;background:rgba(0, 0, 0, 0.85);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;visibility:hidden;transition:.3s}
+.modal-bg.act{opacity:1;visibility:visible}
+.modal{background:var(--card);border:1px solid var(--border);padding:25px;border-radius:15px;width:90%;max-width:450px;max-height:90vh;overflow-y:auto;transform:scale(.9);transition:.3s}
+.modal-bg.act .modal{transform:scale(1)}
+.inp{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--fg);margin-bottom:15px}
+.inp:focus{outline:none;border-color:var(--accent)}
+.pkgs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
+.pkg-btn{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:right;cursor:pointer;transition:.2s}
+.pkg-btn:hover{border-color:var(--accent)}.pkg-btn.act{border-color:var(--accent);background:rgba(0,212,170,.1)}
+.tot{display:flex;justify-content:space-between;align-items:center;background:var(--bg);padding:15px;border-radius:8px;margin-bottom:15px}
+/* WhatsApp Floating Button */
+.wa-float{position:fixed;bottom:30px;left:30px;width:60px;height:60px;background:var(--wa-green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,211,102,0.4);z-index:99;transition:transform 0.3s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:35px;height:35px;fill:white}
+/* Payment Methods Styles */
+.payment-methods{margin-top:20px;border-top:1px solid var(--border);padding-top:20px}
+.pay-title{font-size:18px;font-weight:700;margin-bottom:15px;color:var(--accent);text-align:center}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pay-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;cursor:pointer;transition:0.2s}
+.pay-card:hover{border-color:var(--orange);background:rgba(255,107,53,0.05)}
+.pay-name{font-weight:700;font-size:13px;margin-bottom:5px}
+.pay-num{font-size:12px;color:var(--muted);direction:ltr}
+.copy-btn{font-size:10px;color:var(--orange);margin-top:5px;cursor:pointer}
+.order-summary{background:rgba(0,212,170,0.05);border:1px solid var(--accent);border-radius:8px;padding:15px;margin-bottom:15px}
+.sum-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px}
+.sum-row:last-child{margin-bottom:0}
+.total-row{font-weight:900;font-size:18px;color:var(--accent);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<div class="top-bar">خصم 10% على أول طلب - العرض لفترة محدودة!</div>
+<div class="grid-bg"></div>
+<div class="orb o1"></div><div class="orb o2"></div>
+
+<nav class="nav">
+<div class="logo">SULTAN STOR</div>
+<button class="btn-main" onclick="openMod()">ابدأ الآن</button>
+</nav>
+
+<div style="padding: 0 20px; max-width: 1200px; margin: 0 auto;">
+<section class="hero">
+<div class="hero-content">
+<h1>اشحن رصيدك<br><span class="gr-txt">بثوانٍ معدودة</span></h1>
+<p style="color:var(--muted);margin-bottom:25px;font-size:18px">خدمة شحن فورية وآمنة لجميع تطبيقاتك المفضلة. أسعار تنافسية ودعم على مدار الساعة.</p>
+<button class="btn-main" style="font-size:18px" onclick="openMod()">اشحن الآن</button>
+</div>
+</section>
+
+<div class="stats">
+<div class="st-box"><div class="st-num">50K</div><div style="color:var(--muted);font-size:12px">عملية شحن</div></div>
+<div class="st-box"><div class="st-num">15K</div><div style="color:var(--muted);font-size:12px">عميل سعيد</div></div>
+<div class="st-box"><div class="st-num">84</div><div style="color:var(--muted);font-size:12px">تطبيق</div></div>
+<div class="st-box"><div class="st-num">99%</div><div style="color:var(--muted);font-size:12px">رضا العملاء</div></div>
+</div>
+
+<section class="apps-sec">
+<div class="sec-title"><h2>التطبيقات المتاحة</h2><p style="color:var(--muted)">اختر التطبيق الذي تريد شحنه</p></div>
+<div class="apps-grid" id="grid"></div>
+</section>
+</div>
+
+<footer style="text-align:center;padding:30px;color:var(--muted);border-top:1px solid var(--border)">جميع الحقوق محفوظة 2024 SULTAN STOR</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/84816993640" target="_blank" class="wa-float" title="تواصل معنا على واتساب">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.887 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div class="modal-bg" id="mod">
+<div class="modal">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+<h3 style="font-size:20px">شحن رصيد</h3>
+<button onclick="closeMod()" style="background:var(--bg);border:1px solid var(--border);width:30px;height:30px;border-radius:6px;color:var(--fg);cursor:pointer">✕</button>
+</div>
+
+<!-- Step 1: Selection -->
+<div id="s1">
+<label style="font-size:12px;color:var(--muted)">اختر التطبيق</label>
+<select class="inp" id="sel"><option value="">اختر...</option></select>
+<label style="font-size:12px;color:var(--muted)">اختر الباقة</label>
+<div class="pkgs" id="pkgs"></div>
+<label style="font-size:12px;color:var(--muted)">رقم الحساب</label>
+<input type="text" class="inp" id="acc" placeholder="أدخل رقم الحساب">
+<div class="tot"><span>المجموع</span><span style="font-size:22px;color:var(--accent);font-weight:900" id="price">0 $</span></div>
+<button class="btn-main" style="width:100%" id="conf" disabled>إتمام العملية</button>
+</div>
+
+<!-- Step 2: Summary & Payment -->
+<div id="s2" style="display:none">
+<h4 style="text-align:center;color:var(--accent);margin-bottom:15px">تفاصيل طلبك</h4>
+<div class="order-summary">
+<div class="sum-row"><span>التطبيق:</span><span id="sum-app">-</span></div>
+<div class="sum-row"><span>الباقة:</span><span id="sum-pkg">-</span></div>
+<div class="sum-row"><span>رقم الحساب:</span><span id="sum-acc">-</span></div>
+<div class="sum-row total-row"><span>المجموع:</span><span id="sum-total">0 $</span></div>
+</div>
+
+<p style="text-align:center;color:var(--muted);font-size:13px;margin-bottom:10px">اختر طريقة الدفع المناسبة:</p>
+
+<div class="payment-methods">
+<div class="pay-grid">
+<div class="pay-card" onclick="copyToClipboard('TR12...1234', this)">
+<div class="pay-name">بنك تركي</div>
+<div class="pay-num">TR12...1234</div>
+<div class="copy-btn">نسخ</div>
+</div>
+<div class="pay-card" onclick="copyToClipboard('0987654321', this)">
+<div class="pay-name">شام كاش</div>
+<div class="pay-num">0987654321</div>
+<div class="copy-btn">نسخ</div>
+</div>
+<div class="pay-card" onclick="copyToClipboard('07701234567', this)">
+<div class="pay-name">بريد موب (الجزائر)</div>
+<div class="pay-num">07701234567</div>
+<div class="copy-btn">نسخ</div>
+</div>
+<div class="pay-card" onclick="copyToClipboard('01012345678', this)">
+<div class="pay-name">فودافون كاش (مصر)</div>
+<div class="pay-num">01012345678</div>
+<div class="copy-btn">نسخ</div>
+</div>
+<div class="pay-card" onclick="copyToClipboard('0791234567', this)">
+<div class="pay-name">زين كاش (الأردن)</div>
+<div class="pay-num">0791234567</div>
+<div class="copy-btn">نسخ</div>
+</div>
+<div class="pay-card" onclick="copyToClipboard('07712345678', this)">
+<div class="pay-name">زين كاش (العراق)</div>
+<div class="pay-num">07712345678</div>
+<div class="copy-btn">نسخ</div>
+</div>
+<div class="pay-card" style="grid-column: span 2;" onclick="copyToClipboard('01721234', this)">
+<div class="pay-name">وش مني (لبنان)</div>
+<div class="pay-num">01721234</div>
+<div class="copy-btn">نسخ</div>
+</div>
+</div>
+</div>
+
+<div style="background:rgba(255,107,53,0.1);border:1px solid var(--orange);padding:12px;border-radius:8px;margin-top:20px;text-align:center">
+<p style="font-size:13px;font-weight:700">بعد الدفع، أرسل إيصال التحويل على الواتساب لإتمام الطلب.</p>
+<a href="https://wa.me/84816993640" target="_blank" class="btn-main" style="background:var(--wa-green);margin-top:10px;display:inline-flex;align-items:center;gap:8px">
+<svg style="width:20px;height:20px;fill:white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.887 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+إرسال الإيصال
+</a>
+</div>
+
+<button class="btn-main" style="width:100%;margin-top:15px;background:#333" onclick="closeMod()">إغلاق</button>
+</div>
+</div>
+</div>
+
+<script>
+var apps=[{id:1,n:"اهلا شات",i:"https://api.yassen-card.com/images/product/1600-1753515718.webp",p:[{n:"180,000",p:44},{n:"360,000",p:111},{n:"500,000",p:177}]},{id:2,n:"سوشيال كريستال",i:"https://api.yassen-card.com/images/product/21570-1753546865.webp",p:[{n:"35,000",p:55},{n:"70,000",p:112},{n:"140,000",p:233},{n:"283,000",p:460}]},{id:3,n:"كوكو لايف",i:"https://api.yassen-card.com/images/product/21570-1753546940.webp",p:[{n:"600,000",p:45},{n:"1.2M",p:95},{n:"1.8M",p:150}]},{id:4,n:"تادا شات",i:"https://api.yassen-card.com/images/product/21570-1753547095.webp",p:[{n:"40,000",p:43},{n:"80,000",p:86},{n:"160,000",p:170},{n:"330,000",p:340}]},{id:5,n:"ياهلا شات",i:"https://api.yassen-card.com/images/product/21570-1753549006.webp",p:[{n:"100",p:5},{n:"500",p:20},{n:"1000",p:35},{n:"5000",p:150}]},{id:6,n:"واهو",i:"https://api.yassen-card.com/images/product/21570-1753547154.webp",p:[{n:"600,000",p:45},{n:"1.2M",p:110},{n:"1.8M",p:170}]},{id:7,n:"لايكي",i:"https://api.yassen-card.com/images/product/21570-1753547215.webp",p:[{n:"3,800",p:50},{n:"7,600",p:100},{n:"15,200",p:200},{n:"30,400",p:400}]},{id:8,n:"بوبو لايف",i:"https://api.yassen-card.com/images/product/21570-1753547279.webp",p:[{n:"600,000",p:50},{n:"1.2M",p:100},{n:"1.5M",p:133},{n:"1.8M",p:175}]},{id:9,n:"هاكي شات",i:"https://api.yassen-card.com/images/product/21570-1753547337.webp",p:[{n:"75,000",p:50},{n:"150,000",p:100},{n:"300,000",p:200},{n:"450,000",p:300}]},{id:10,n:"يوهو واكا",i:"https://api.yassen-card.com/images/product/21570-1753547391.webp",p:[{n:"600,000",p:50},{n:"1.2M",p:100},{n:"1.5M",p:125},{n:"2M",p:180}]},{id:11,n:"تيك توك",i:"https://api.yassen-card.com/images/product/21570-1753547441.webp",p:[{n:"5,000",p:50},{n:"10,000",p:100},{n:"15,000",p:150},{n:"20,000",p:200}]},{id:12,n:"بارتي ستار",i:"https://api.yassen-card.com/images/product/21570-1753547487.webp",p:[{n:"60,000",p:50},{n:"120,000",p:100},{n:"150,000",p:150},{n:"200,000",p:200}]},{id:13,n:"فور فون شات",i:"https://api.yassen-card.com/images/product/21570-1753547636.webp",p:[{n:"1M",p:50},{n:"2M",p:100},{n:"3M",p:150},{n:"4M",p:200}]},{id:14,n:"يا اهلا شات",i:"https://api.yassen-card.com/images/product/21570-1753547032.webp",p:[{n:"40,000",p:55},{n:"80,000",p:110},{n:"100,000",p:150},{n:"150,000",p:200}]},{id:15,n:"سما شات",i:"https://api.yassen-card.com/images/product/21570-1753547689.webp",p:[{n:"600,000",p:50},{n:"1.2M",p:100}]},{id:16,n:"اكسينا لايف",i:"https://api.yassen-card.com/images/product/21570-1762185709.webp",p:[{n:"600,000",p:50},{n:"1.2M",p:100},{n:"1.5M",p:140}]},{id:17,n:"يلا لايف",i:"https://api.yassen-card.com/images/category/21570-1753548180.webp",p:[{n:"2,890",p:15},{n:"5,930",p:27},{n:"12,550",p:60}]},{id:18,n:"هوني جار",i:"https://api.yassen-card.com/images/product/21570-1753547830.webp",p:[{n:"8,000",p:50},{n:"10,000",p:70},{n:"12,500",p:85},{n:"15,000",p:100}]},{id:19,n:"لايفو شات",i:"https://api.yassen-card.com/images/category/21570-1753538876.webp",p:[{n:"10,000",p:30},{n:"20,000",p:60}]},{id:20,n:"تاكا لايف",i:"https://api.yassen-card.com/images/product/21570-1753581843.webp",p:[{n:"600,000",p:50},{n:"800,000",p:65},{n:"1M",p:83},{n:"1.2M",p:100}]},{id:21,n:"توميل شات",i:"https://api.yassen-card.com/images/category/21570-1753538960.webp",p:[{n:"12,000",p:60},{n:"24,000",p:120}]},{id:22,n:"شيلا شات",i:"https://api.yassen-card.com/images/product/21570-1753536881.webp",p:[{n:"700,000",p:50},{n:"1M",p:70},{n:"1.5M",p:110},{n:"1.8M",p:150}]},{id:23,n:"مجلس شات",i:"https://api.yassen-card.com/images/product/21570-1753542794.webp",p:[{n:"60,000",p:50},{n:"120,000",p:100},{n:"150,000",p:130},{n:"180,000",p:160}]},{id:24,n:"ميو لايف",i:"https://api.yassen-card.com/images/category/21570-1753542153.webp",p:[{n:"6,000",p:50},{n:"10,000",p:80},{n:"15,000",p:100},{n:"20,000",p:160}]},{id:25,n:"سويو",i:"https://api.yassen-card.com/images/product/21570-1753743969.webp",p:[{n:"80,000",p:50},{n:"160,000",p:100},{n:"200,000",p:150}]},{id:26,n:"توب توب",i:"https://api.yassen-card.com/images/product/21570-1753544457.webp",p:[{n:"1M",p:50},{n:"2M",p:100},{n:"3M",p:150},{n:"4M",p:200}]},{id:27,n:"امار شات",i:"https://api.yassen-card.com/images/product/21570-1753544521.webp",p:[{n:"70,000",p:50},{n:"140,000",p:100},{n:"180,000",p:150},{n:"230,000",p:180}]},{id:28,n:"تانجو",i:"https://api.yassen-card.com/images/product/21570-1753544580.webp",p:[{n:"12,000",p:50},{n:"20,000",p:80},{n:"25,000",p:130}]},{id:29,n:"تامي شات",i:"https://api.yassen-card.com/images/product/21570-1753544832.webp",p:[{n:"1M",p:50},{n:"2M",p:100},{n:"3M",p:150},{n:"4M",p:200}]},{id:30,n:"هيو شات",i:"https://api.yassen-card.com/images/product/21570-1753544886.webp",p:[{n:"100,000",p:50},{n:"200,000",p:80},{n:"300,000",p:130},{n:"400,000",p:180}]},{id:31,n:"هوبي شات",i:"https://api.yassen-card.com/images/product/21570-1753544970.webp",p:[{n:"1M",p:60},{n:"2M",p:120},{n:"3M",p:180},{n:"4M",p:240}]},{id:32,n:"سلام شات",i:"https://api.yassen-card.com/images/product/21570-1753581098.webp",p:[{n:"6M",p:50},{n:"12M",p:100},{n:"15M",p:120},{n:"20M",p:160}]},{id:33,n:"سول يو شات",i:"https://api.yassen-card.com/images/product/21570-1753581318.webp",p:[{n:"100",p:5},{n:"500",p:20},{n:"1000",p:35},{n:"5000",p:150}]},{id:34,n:"يوي شات",i:"https://api.yassen-card.com/images/product/21570-1753581360.webp",p:[{n:"600,000",p:50},{n:"1.2M",p:100},{n:"1.5M",p:125},{n:"1.8M",p:160}]},{id:35,n:"وناسا شات",i:"https://api.yassen-card.com/images/product/21570-1753581403.webp",p:[{n:"70,000",p:50},{n:"140,000",p:100},{n:"180,000",p:150},{n:"230,000",p:200}]},{id:36,n:"ليلى شات",i:"https://api.yassen-card.com/images/product/21570-1753581621.webp",p:[{n:"300,000",p:50},{n:"600,000",p:100},{n:"800,000",p:160},{n:"1M",p:200}]},{id:37,n:"ايومي شات",i:"https://api.yassen-card.com/images/product/21570-1763209394.webp",p:[{n:"70,000",p:50},{n:"140,000",p:100},{n:"160,000",p:140},{n:"180,000",p:160}]},{id:38,n:"تالك تالك",i:"https://api.yassen-card.com/images/product/21570-1753582062.webp",p:[{n:"70,000",p:50},{n:"140,000",p:100},{n:"180,000",p:130},{n:"200,000",p:150}]},{id:39,n:"كيو لايف",i:"https://api.yassen-card.com/images/product/21570-1753582173.webp",p:[{n:"180,000",p:50},{n:"360,000",p:100},{n:"400,000",p:122}]},{id:40,n:"فانسي لايف",i:"https://api.yassen-card.com/images/product/21570-1753582229.webp",p:[{n:"1M",p:50},{n:"2M",p:100},{n:"3M",p:150},{n:"4M",p:200}]},{id:41,n:"هيا شات",i:"https://api.yassen-card.com/images/product/21570-1753582341.webp",p:[{n:"70,000",p:50},{n:"140,000",p:100},{n:"200,000",p:150}]},{id:42,n:"لما شات",i:"https://api.yassen-card.com/images/product/21570-1753582496.webp",p:[{n:"170,000",p:50},{n:"340,000",p:100},{n:"500,000",p:150},{n:"600,000",p:180}]},{id:43,n:"بينمو شات",i:"https://api.yassen-card.com/images/product/21570-1753582694.webp",p:[{n:"150,000",p:50},{n:"300,000",p:100},{n:"400,000",p:120}]},{id:44,n:"بوبو شات",i:"https://api.yassen-card.com/images/product/21570-1753582770.webp",p:[{n:"150,000",p:50},{n:"300,000",p:100},{n:"400,000",p:120}]},{id:45,n:"يويو شات",i:"https://api.yassen-card.com/images/product/21570-1753582808.webp",p:[{n:"100,000",p:55},{n:"150,000",p:100},{n:"200,000",p:133}]},{id:46,n:"هوا شات",i:"https://api.yassen-card.com/images/product/21570-1753744330.webp",p:[{n:"100,000",p:50},{n:"150,000",p:70},{n:"200,000",p:90}]},{id:47,n:"ازال لايف",i:"https://api.yassen-card.com/images/product/21570-1753582868.webp",p:[{n:"80,000",p:50},{n:"160,000",p:100},{n:"200,000",p:140},{n:"250,000",p:180}]},{id:48,n:"ميجو لايف",i:"https://api.yassen-card.com/images/product/21570-1753582961.webp",p:[{n:"600,000",p:50},{n:"1M",p:90},{n:"1.5M",p:140}]},{id:49,n:"لامي شات",i:"https://api.yassen-card.com/images/product/21570-1753583017.webp",p:[{n:"200,000",p:50},{n:"400,000",p:100},{n:"600,000",p:150},{n:"800,000",p:200}]},{id:50,n:"ليجو لايف",i:"https://api.yassen-card.com/images/product/21570-1753583048.webp",p:[{n:"50,000",p:50},{n:"100,000",p:100},{n:"150,000",p:150}]},{id:51,n:"مرحبا شات",i:"https://api.yassen-card.com/images/product/21570-1753583099.webp",p:[{n:"100M",p:50},{n:"200M",p:200}]},{id:52,n:"ليت شات",i:"https://api.yassen-card.com/images/product/21570-1753583130.webp",p:[{n:"300,000",p:50},{n:"500,000",p:80},{n:"800,000",p:130}]},{id:53,n:"هاببي شات",i:"https://api.yassen-card.com/images/product/21570-1753583253.webp",p:[{n:"120,000",p:50},{n:"240,000",p:100},{n:"300,000",p:125}]},{id:54,n:"سوبر لايف",i:"https://api.yassen-card.com/images/product/21570-1753583308.webp",p:[{n:"8,000",p:50},{n:"16,000",p:100},{n:"20,000",p:110}]},{id:55,n:"هيا",i:"https://api.yassen-card.com/images/product/21570-1753630664.webp",p:[{n:"3,500",p:50},{n:"7,000",p:100}]},{id:56,n:"كواي",i:"https://api.yassen-card.com/images/product/21570-1753631521.webp",p:[{n:"5,000",p:50},{n:"10,000",p:100},{n:"15,000",p:150},{n:"20,000",p:200}]},{id:57,n:"ديدو شات",i:"https://api.yassen-card.com/images/product/21570-1753744720.webp",p:[{n:"100,000",p:50},{n:"200,000",p:100},{n:"300,000",p:200}]},{id:58,n:"او هلا شات",i:"https://api.yassen-card.com/images/product/21570-1753631578.webp",p:[{n:"80,000",p:50},{n:"160,000",p:100}]},{id:59,n:"فلا",i:"https://api.yassen-card.com/images/category/21570-1753635052.webp",p:[{n:"100",p:5},{n:"500",p:20},{n:"1000",p:35},{n:"5000",p:150}]},{id:60,n:"سو ماتش",i:"https://api.yassen-card.com/images/product/21570-1753636071.webp",p:[{n:"500,000",p:50},{n:"1M",p:100}]},{id:61,n:"صدفى شات",i:"https://api.yassen-card.com/images/product/21570-1753636128.webp",p:[{n:"1M",p:50},{n:"2M",p:100}]},{id:62,n:"واكي ستار",i:"https://api.yassen-card.com/images/product/21570-1753636403.webp",p:[{n:"100",p:5},{n:"500",p:20},{n:"1000",p:35},{n:"5000",p:150}]},{id:63,n:"بيجو لايف",i:"https://api.yassen-card.com/images/product/21570-1753745482.webp",p:[{n:"3,000",p:50},{n:"6,000",p:100},{n:"10,000",p:150}]},{id:64,n:"سوجو",i:"https://api.yassen-card.com/images/category/21570-1761206527.webp",p:[{n:"400,000",p:50},{n:"800,000",p:100}]},{id:65,n:"ببجي عالمي",i:"https://api.yassen-card.com/images/category/21570-1753710587.webp",p:[{n:"4,000 UC",p:50},{n:"8,000 UC",p:100}]},{id:66,n:"ببجي تركي",i:"https://api.yassen-card.com/images/category/21570-1753713168.webp",p:[{n:"8,100 UC",p:60}]},{id:67,n:"فري فاير",i:"https://api.yassen-card.com/images/category/21570-1753713821.webp",p:[{n:"100",p:5},{n:"310",p:15},{n:"520",p:25},{n:"1060",p:50}]},{id:68,n:"يالا لودو",i:"https://api.yassen-card.com/images/category/21570-1753716890.webp",p:[{n:"10M",p:40}]},{id:69,n:"كلاش",i:"https://api.yassen-card.com/images/category/21570-1753717013.webp",p:[{n:"7,150",p:50},{n:"15,400",p:80}]},{id:70,n:"جواكر",i:"https://api.yassen-card.com/images/category/21570-1753727041.webp",p:[{n:"4,500",p:40}]},{id:71,n:"8 بول",i:"https://api.yassen-card.com/images/category/21570-1753727319.webp",p:[{n:"1M",p:5},{n:"5M",p:20},{n:"10M",p:35},{n:"50M",p:150}]},{id:72,n:"رصيد MTN",i:"https://api.yassen-card.com/images/product/21570-1753740815.webp",p:[{n:"6,000",p:50},{n:"7,200",p:60}]},{id:73,n:"رصيد SYRIATRLL",i:"https://api.yassen-card.com/images/product/21570-1753740855.webp",p:[{n:"130.76",p:1},{n:"240.38",p:2}]},{id:74,n:"وحدات سيريتل",i:"https://api.yassen-card.com/images/product/21570-1771705190.webp",p:[{n:"1$",p:5},{n:"5$",p:20},{n:"10$",p:35},{n:"25$",p:70}]},{id:75,n:"USDT Binance",i:"https://api.yassen-card.com/images/category/21570-1766149895.webp",p:[{n:"50$",p:48},{n:"100$",p:93},{n:"200$",p:197}]},{id:76,n:"Payeer",i:"https://api.yassen-card.com/images/category/21570-1764514751.webp",p:[{n:"1$",p:5},{n:"5$",p:20},{n:"10$",p:35},{n:"25$",p:70}]},{id:77,n:"Tron",i:"https://api.yassen-card.com/images/category/21570-1764516195.webp",p:[{n:"1$",p:5},{n:"5$",p:20},{n:"10$",p:35},{n:"25$",p:70}]},{id:78,n:"شحن لاكا",i:"https://api.yassen-card.com/images/product/21570-1769549629.webp",p:[{n:"6,000",p:50},{n:"120,000",p:100},{n:"150,000",p:120},{n:"200,000",p:160}]},{id:79,n:"بات لايف",i:"https://api.yassen-card.com/images/product/21570-1769549655.webp",p:[{n:"100",p:5},{n:"500",p:20},{n:"1000",p:35},{n:"5000",p:150}]},{id:80,n:"يايا شات",i:"https://api.yassen-card.com/images/product/21570-1769549683.webp",p:[{n:"1,000,000",p:40},{n:"2,000,000",p:80}]},{id:81,n:"كراش لايف",i:"https://api.yassen-card.com/images/product/21570-1770633470.webp",p:[{n:"500,000",p:50},{n:"1,000,000",p:100},{n:"1,500,000",p:150}]},{id:82,n:"HAPI LIVE",i:"https://api.yassen-card.com/images/product/21570-1770634235.webp",p:[{n:"50,000,000",p:55},{n:"100,000,000",p:100}]},{id:83,n:"نيو شات",i:"https://api.yassen-card.com/images/product/21570-1770805100.webp",p:[{n:"6,000,000",p:50},{n:"12,000,000",p:100}]},{id:84,n:"هارت لايف",i:"https://api.yassen-card.com/images/product/21570-1769549443.webp",p:[{n:"600,000",p:50},{n:"120,000",p:100},{n:"150,000",p:133}]}];
+var selPkg=null,selApp=null;
+function init(){render();fillSel()}
+function render(){var g=document.getElementById('grid'),h='';apps.forEach(a=>{h+='<div class="app-card" onclick="pickApp('+a.id+')"><img class="app-img" src="'+a.i+'" onerror="this.src=\'https://via.placeholder.com/150x120/1a1a24/00d4aa?text=APP\'"><div class="app-name">'+a.n+'</div></div>'});g.innerHTML=h}
+function fillSel(){var s=document.getElementById('sel'),o='<option value="">اختر...</option>';apps.forEach(a=>{o+='<option value="'+a.id+'">'+a.n+'</option>'});s.innerHTML=o;s.onchange=e=>{var v=parseInt(e.target.value),f=apps.find(x=>x.id===v);if(f){selApp=f;renderPkgs(f)}else{selApp=null;document.getElementById('pkgs').innerHTML=''}resetConf()}}
+function renderPkgs(a){var g=document.getElementById('pkgs'),h='';a.p.forEach((p,i)=>{h+='<button class="pkg-btn" onclick="pickPkg('+i+','+p.p+',\''+p.n+'\')"><b>'+p.n+'</b><div style="color:var(--accent)">'+p.p+' $</div></button>'});g.innerHTML=h;selPkg=null;document.getElementById('price').textContent='0 $';resetConf()}
+function pickPkg(i,p,n){selPkg={i:i,p:p,n:n};document.querySelectorAll('.pkg-btn').forEach((b,ix)=>b.classList.toggle('act',ix===i));document.getElementById('price').textContent=p+' $';check()}
+function pickApp(id){openMod();document.getElementById('sel').value=id;var f=apps.find(x=>x.id===id);if(f){selApp=f;renderPkgs(f)}}
+function openMod(){document.getElementById('mod').classList.add('act');document.getElementById('s1').style.display='block';document.getElementById('s2').style.display='none';resetConf()}
+function closeMod(){document.getElementById('mod').classList.remove('act')}
+function resetConf(){var b=document.getElementById('conf');b.disabled=true;b.style.opacity=0.5}
+function check(){var a=document.getElementById('acc').value;if(selPkg&&a.trim()){var b=document.getElementById('conf');b.disabled=false;b.style.opacity=1}}
+document.getElementById('acc').oninput=check;
+document.getElementById('conf').onclick=()=>{
+    if(!this.disabled){
+        // Populate Summary
+        document.getElementById('sum-app').innerText = selApp.n;
+        document.getElementById('sum-pkg').innerText = selPkg.n;
+        document.getElementById('sum-acc').innerText = document.getElementById('acc').value;
+        document.getElementById('sum-total').innerText = selPkg.p + ' $';
+        // Show Step 2
+        document.getElementById('s1').style.display='none';
+        document.getElementById('s2').style.display='block';
+    }
+};
+document.getElementById('mod').onclick=e=>{if(e.target.id==='mod')closeMod()};
+
+// Copy to Clipboard Function
+function copyToClipboard(text, element) {
+    navigator.clipboard.writeText(text).then(() => {
+        var btn = element.querySelector('.copy-btn');
+        var originalText = btn.innerText;
+        btn.innerText = 'تم النسخ!';
+        btn.style.color = 'var(--accent)';
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.color = 'var(--orange)';
+        }, 1500);
+    });
+}
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
